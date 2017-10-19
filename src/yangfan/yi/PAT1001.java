@@ -8,7 +8,7 @@ package yangfan.yi;
  * Details:
  ********************************************/
 
-public class Question1001 {
+public class PAT1001 {
 
 	/**
 	 * Author: Vermouth.yf 
@@ -16,7 +16,7 @@ public class Question1001 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
