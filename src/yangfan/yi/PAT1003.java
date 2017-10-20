@@ -46,6 +46,10 @@ import java.util.Scanner;
 		NO
 		NO
 	
+	规律是   aPAAAAA...Taaaaa...
+	      P之前的A的个数乘以 P与T之间的A的个数等于T之后的A的个数。
+	      
+	      提交后有两个测试点过不去... 烦
  * 
  * 
  ********************************************/
@@ -68,10 +72,36 @@ public class PAT1003 {
 	}
       
       public static boolean judge(String xxx){
+    	  int beforeP = 0;
+    	  int beforeT = 0;
+    	  int afterT = 0;       // afterT = beforeP * beforeT
+    	  boolean flagP = false;
+    	  boolean flagT = false;
+    	  char [] charArr = xxx.toCharArray();
+    	  for(int i=0;i<charArr.length;i++){
+    		  if(charArr[i]!='P'&&charArr[i]!='T'&&charArr[i]!='A'){
+                    return false;		  
+    		  }
+    		  if(charArr[i]=='A'){
+    			  if(flagT)   
+    				  afterT++;
+    			  else if(flagP)
+    				  beforeT++;
+    			  else if(!flagP)
+    				  beforeP++;
+    		  }else {
+    			  if(charArr[i]=='P')
+    				  flagP = true;
+    			  else
+    				  flagT = true;
+    		  }
+    	  }
     	  
+    	  if((afterT==beforeP*beforeT)&&beforeT!=0)
+    		  return true;
+    	  else
+    		  return false;
     	  
-    	  
-    	  return true;
       }
       
       public static void print(boolean flag){
