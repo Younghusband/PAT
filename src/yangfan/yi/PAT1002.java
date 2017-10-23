@@ -1,5 +1,6 @@
 package yangfan.yi;
 
+import java.io.BufferedInputStream;
 import java.util.Scanner;
 
 /*********************************************
@@ -32,7 +33,9 @@ import java.util.Scanner;
 
 		yi san wu
 
-                       测试点1 无法通过。。。  不知道啥原因
+                       测试点1 无法通过。。。  不知道啥原因      ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+                       后来发现是数字0的问题...   0的拼音应该是ling 而不是lin
+                       
  ********************************************/
 
 public class PAT1002 {
@@ -41,7 +44,7 @@ public class PAT1002 {
 		
 		String src = "";
 		int sum = 0;
-		Scanner scan = new Scanner(System.in);
+		Scanner scan = new Scanner(new BufferedInputStream(System.in));
 		src = scan.next();
 		char [] cArr = src.toCharArray();
 		
@@ -88,7 +91,7 @@ public class PAT1002 {
 				System.out.print("jiu");
 			break;
 			default :
-				System.out.print("lin");
+				System.out.print("ling");
 			break;
 			
 			}

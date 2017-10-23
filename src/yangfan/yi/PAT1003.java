@@ -1,5 +1,6 @@
 package yangfan.yi;
 
+import java.io.BufferedInputStream;
 import java.util.Scanner;
 
 /*********************************************
@@ -49,7 +50,7 @@ import java.util.Scanner;
 	规律是   aPAAAAA...Taaaaa...
 	      P之前的A的个数乘以 P与T之间的A的个数等于T之后的A的个数。
 	      
-	      提交后有两个测试点过不去... 烦
+	      提交后有两个测试点过不去... 烦   修改初校验规则后，依旧还有一个测试点过不去
  * 
  * 
  ********************************************/
@@ -57,7 +58,7 @@ import java.util.Scanner;
 public class PAT1003 {
 	
       public static void main(String[] args) {
-    	  Scanner scan = new Scanner(System.in);
+    	  Scanner scan = new Scanner(new BufferedInputStream(System.in));
     	  int lineNums = scan.nextInt();
     	  boolean [] flags = new boolean[lineNums];
     	  for(int i=0;i<lineNums;i++){
@@ -81,14 +82,25 @@ public class PAT1003 {
     	  for(int i=0;i<charArr.length;i++){
     		  if(charArr[i]!='P'&&charArr[i]!='T'&&charArr[i]!='A'){
                     return false;		  
+    		  }else if(!flagP&&(charArr[i]!='A'&&charArr[i]!='P')){  //...x... P not as top
+    			    return false;
+    		  }else if(flagP&&beforeT==0&&charArr[i]!='A'){  // ...Px  x is not A
+    			    return false;
+    		  }else if(flagT&&charArr[i]!='A'){  // ..PA..T..  after T is only A or nothing
+    			    return false;
     		  }
+    			  
+    		  //count A nums from different rigion
     		  if(charArr[i]=='A'){
-    			  if(flagT)   
+    			  if(flagT){  
     				  afterT++;
-    			  else if(flagP)
-    				  beforeT++;
-    			  else if(!flagP)
-    				  beforeP++;
+    			  }
+    			  else{
+    				  if(flagP)
+    					  beforeT++;
+    				  else
+    					  beforeP++;
+    			  }
     		  }else {
     			  if(charArr[i]=='P')
     				  flagP = true;
@@ -96,7 +108,6 @@ public class PAT1003 {
     				  flagT = true;
     		  }
     	  }
-    	  
     	  if((afterT==beforeP*beforeT)&&beforeT!=0)
     		  return true;
     	  else

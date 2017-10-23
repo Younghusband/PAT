@@ -12,8 +12,8 @@ import java.util.Scanner;
  ********************************************/
 
 public class TestPAT1003 {
+	
      public static void main(String[] args) {
-    	 
     	 int flagSum = 0;  
          ArrayList<String> stringList = new ArrayList<String>();  
          Scanner sc = new Scanner(System.in);  
@@ -49,5 +49,5 @@ public class TestPAT1003 {
          } else {  
              System.out.println("NO");  
          }  
-     }  
+     } 
 }
